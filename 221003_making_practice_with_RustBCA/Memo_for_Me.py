@@ -44,7 +44,7 @@ Running rustBCA (e.g., layered_geometry.toml)
         17   num_chunks = 10 -> 1
         19   track_energy_losses = false -> true
         40   N = [ 10000,] -> [ 5,]
-3.  In terminal, 'cargo run --release layered_geometry.toml':
+3.  In terminal, 'cargo run --release layered_geometry.toml'
 4.  You should have something like:
         Finished release [optimized] target(s) in 0.15s
         Running `/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/RustBCA/target/release/RustBCA layered_geometry.toml`
