@@ -75,7 +75,7 @@ from rustbca import *
 
 def main():
     name = "2000.0eV_0.0001deg_He_TiO2_Al_Si"
-    N = 5
+    N = 10
     do_trajectory_plot(name)
     plot_energy_loss(name,N)
     #plot_distributions_rustbca('2000.0eV_0.0001deg_He_TiO2_Al_Si')
