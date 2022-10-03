@@ -1,0 +1,55 @@
+[material_parameters]
+energy_unit = "EV"
+mass_unit = "AMU"
+Eb = [ 0.0,]
+Es = [ 1.64,]
+Ec = [ 1.0,]
+Z = [ 3,]
+m = [ 6.941,]
+interaction_index = [ 0,]
+surface_binding_model = "AVERAGE"
+bulk_binding_model = "AVERAGE"
+
+[particle_parameters]
+length_unit = "MICRON"
+energy_unit = "EV"
+mass_unit = "AMU"
+N = [ 100000,]
+m = [ 1.008,]
+Z = [ 1,]
+E = [ 0.1,]
+Ec = [ 0.95,]
+Es = [ 1.5,]
+interaction_index = [ 0,]
+pos = [ [ -0.0003158111487608643, 0.0, 0.0,],]
+dir = [ [ 0.9999999999984769, 1.7453292519934434e-6, 0.0,],]
+particle_input_filename = ""
+
+[geometry_input]
+length_unit = "MICRON"
+triangles = [ [ 0.0, 100, 0.0, 50.0, -50.0, -50.0,], [ 0.0, 100, 100, 50.0, 50.0, -50.0,],]
+densities = [ [ 46299999999.99999,], [ 46299999999.99999,],]
+material_boundary_points = [ [ 0.0, 50.0,], [ 100, 50.0,], [ 100, -50.0,], [ 0.0, -50.0,],]
+simulation_boundary_points = [ [ 100.00314239949016, -50.00314239949016,], [ -0.003142399490157854, -50.00314239949016,], [ -0.003142399490157854, 50.00314239949016,], [ 100.00314239949016, 50.00314239949016,], [ 100.00314239949016, -50.00314239949016,],]
+energy_barrier_thickness = 0.0002512360815299667
+electronic_stopping_correction_factors = [ 1.0, 1.0,]
+
+[options]
+name = "hydrogen_lithium_"
+track_trajectories = false
+track_recoils = true
+track_recoil_trajectories = false
+write_buffer_size = 8000
+weak_collision_order = 3
+suppress_deep_recoils = false
+high_energy_free_flight_paths = false
+num_threads = 4
+num_chunks = 10
+use_hdf5 = false
+electronic_stopping_mode = "LOW_ENERGY_NONLOCAL"
+mean_free_path_model = "LIQUID"
+track_displacements = false
+track_energy_losses = false
+root_finder = [["DEFAULTNEWTON"]]
+interaction_potential = [["KR_C"]]
+scattering_integral =  [["GAUSS_LEGENDRE"]]

@@ -1,14 +1,24 @@
 #%%
-import sys
+#import sys
 import numpy as np
 import matplotlib.pyplot as plt
 
-sys.path.insert(1, '/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/RustBCA/scripts/')
+#sys.path.insert(1, '/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/RustBCA/scripts/')
 #from scripts.rustbca import *
-import rustbca 
+#import rustbca 
 #import do_trajectory_plot
-
+#%%
+#from scripts.rustbca import *
+import sys
+sys.path.insert(1, '/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/RustBCA/scripts/')
+from rustbca import do_trajectory_plot
 do_trajectory_plot("boron_dust_grain_")
+
+#do_trajectory_plot("boron_dust_grain_")
+
+#%%
+import numpy as np
+import matplotlib.pyplot as plt
 
 deposited_ions = np.genfromtxt(
     "2000.0eV_0.0001deg_He_TiO2_Al_Sideposited.output",
