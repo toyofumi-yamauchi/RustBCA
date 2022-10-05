@@ -81,4 +81,8 @@ def main():
     #plot_distributions_rustbca('2000.0eV_0.0001deg_He_TiO2_Al_Si')
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     main()
+=======
+    main()
+>>>>>>> 6be1db60387e229ad6d94189e327acfd277a56e0
