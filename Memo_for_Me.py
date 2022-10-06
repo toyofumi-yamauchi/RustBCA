@@ -68,6 +68,21 @@ Running rustBCA (e.g., layered_geometry.toml)
         N = 5
 8. In terminal, 'python3 Memo_for_Me.py'
 
+When your generated output file is > 100 MB
+1.  The GitHub may accept the commit, but it does not allow the push
+    https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github
+2.  Download the BFG Repo-Cleaner file
+    https://rtyley.github.io/bfg-repo-cleaner/
+3.  Save the downloaded file in the folder where your GitHub is connected
+    E.g., /Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/RustBCA
+4.  Open the terminal at the folder where your GitHub is connected
+5.  In terminal, 'java -jar ./bfg-1.14.0.jar --delete-files FILENAME'
+    You should not include the pathname here. Just FILENAME
+    It automatically find the file and remove it from history
+    E.g., java -jar ./bfg-1.14.0.jar --delete-files 2000.0eV_0.0001deg_He_TiO2_Al_Sitrajectories.output
+          java -jar ./bfg-1.14.0.jar --delete-files 2000.0eV_0.0001deg_He_TiO2_Al_Sienergy_loss.output
+6.  In terminal, 'git push --force'
+
 '''
 from materials import *
 from formulas import *
