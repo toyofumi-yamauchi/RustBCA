@@ -1,5 +1,5 @@
 [options]
-name = "2000.0eV_0.0001deg_He_TiO2_Al_Si"
+name = "2000.0eV_0.0001deg_He_TiO2_Al_Si_"
 track_trajectories = false
 track_recoils = true
 track_recoil_trajectories = false
