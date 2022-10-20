@@ -132,9 +132,9 @@ def do_trajectory_plot(name, thickness=None, depth=None, boundary=None, plot_fin
         plt.ylabel('y [um]')
         plt.title(name+' Trajectories')
         plt.axis('square')
-        if show: plt.show()
         plt.savefig(name+'trajectories_.png')
-        plt.close()
+        #if show: plt.show()
+        #plt.close()
 
 def do_trajectory_plot_3d(name, thickness=None, depth=None, boundary=None, plot_final_positions=True, plot_origins=True, radius=None, cube_length=None, input_file=None):
     '''
@@ -372,10 +372,10 @@ def generate_rustbca_input(Zb, Mb, n, Eca, Ecb, Esa, Esb, Eb, Ma, Za, E0, N, N_,
 
 def plot_distributions_rustbca(name, beam, target,
     incident_energy=1, incident_angle=0,
-    max_collision_contours=4, plot_2d_reflected_contours=False,
+    max_collision_contours=4, plot_2d_reflected_contours=True,
     collision_contour_significance_threshold=0.1, plot_garrison_contours=False,
     plot_reflected_energies_by_number_collisions=True,
-    plot_scattering_energy_curve=False):
+    plot_scattering_energy_curve=True):
 
     '''
     Plots rustbca distributions.

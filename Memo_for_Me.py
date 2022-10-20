@@ -61,7 +61,7 @@ Running rustBCA (e.g., layered_geometry.toml)
     2000.0eV_0.0001deg_He_TiO2_Al_Sisummary.output
     2000.0eV_0.0001deg_He_TiO2_Al_Sitrajectories.output
     2000.0eV_0.0001deg_He_TiO2_Al_Sitrajectory_data.output
-6. In terminal, 'cp ../Memo_for_Me.py . '
+6. In terminal, 'cp ../Memo_for_Me.py .'
 7. Open Memo_for_Me.py in the FOLDERNAME_YYMMDD:
     For example, make changes:
         name = "2000.0eV_0.0001deg_He_TiO2_Al_Si"
@@ -82,18 +82,26 @@ When your generated output file is > 100 MB
     E.g., java -jar ./bfg-1.14.0.jar --delete-files 2000.0eV_0.0001deg_He_TiO2_Al_Sitrajectories.output
           java -jar ./bfg-1.14.0.jar --delete-files 2000.0eV_0.0001deg_He_TiO2_Al_Sienergy_loss.output
 6.  In terminal, 'git push --force'
-
+14
 '''
 from materials import *
 from formulas import *
 from rustbca import *
+import matplotlib.pyplot as plt
+import numpy as np
 
 def main():
-    name = "2000.0eV_0.0001deg_He_TiO2_Al_Si"
-    N = 5
+    #name = "2000.0eV_0.0001deg_He_TiO2_Al_Si"
+    #name = "20.0eV_0.0001deg_N2_TiO2_Al_Si_"
+    name = "2000.0eV_0.0001deg_N2_TiO2_Al_Si_"
+    N = 1000
     do_trajectory_plot(name)
-    plot_energy_loss(name,N)
-    #plot_distributions_rustbca('2000.0eV_0.0001deg_He_TiO2_Al_Si')
+    #plot_energy_loss(name,N)
+    #plot_distributions_rustbca(name,'Ar','Ti')
+
+    
+
+
 
 if __name__ == '__main__':
     main()
