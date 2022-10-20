@@ -89,15 +89,11 @@ from formulas import *
 from rustbca import *
 
 def main():
-    #name = "2000.0eV_0.0001deg_He_TiO2_Al_Si_"
-    #name = "2000.0eV_45deg_N2_TiO2_Al_Si_"
-    #name = "20.0eV_0.0001deg_N2_TiO2_Al_Si_"
-    name = "10.0eV_45deg_N2_TiO2_Al_Si_"
-    name = "10.0eV_45deg_N2_Ti_"
     name = "Test_"
 
     N = 100
-    do_trajectory_plot(name,2.0,0.5,(1.0,1.0),True,False,True)
+    do_trajectory_plot(name,2.0,0.5)
+    #do_trajectory_plot(name)
     #plot_energy_loss(name,N)
     #plot_distributions_rustbca('2000.0eV_0.0001deg_He_TiO2_Al_Si')
 
