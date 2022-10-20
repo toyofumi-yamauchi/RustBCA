@@ -49,21 +49,21 @@ dir = [ [ 0.999, 0.001, 0.0,],]
 
 [geometry_input]
 length_unit = "MICRON"
-triangles = [ [ 0.0, 0.01, 0.0, 0.5, 0.5, -0.5,],]
-densities = [ [ 3.0e+10, 6.0e+10, 0.0, 0.0,],]
-material_boundary_points = [ [ 0.0, 0.5,],]
-simulation_boundary_points = [ [ 0.6, -0.6,],]
-electronic_stopping_correction_factors = [1.0]
+triangles = [ [ 0.0, 0.01, 0.0, 0.5, 0.5, -0.5,], [ 0.0, 0.01, 0.01, -0.5, 0.5, -0.5,], [ 0.01, 0.01, 0.04, -0.5, 0.5, -0.5,], [ 0.01, 0.04, 0.04, 0.5, 0.5, -0.5,], [ 0.04, 0.5, 0.04, 0.5, 0.5, -0.5,], [ 0.04, 0.5, 0.5, -0.5, 0.5, -0.5,],]
+densities = [ [ 3.0e+10, 6.0e+10, 0.0, 0.0,], [ 3.0e+10, 6.0e+10, 0.0, 0.0,], [ 0.0, 0.0, 6.026e+10, 0.0,], [ 0.0, 0.0, 6.026e+10, 0.0,], [ 0.0, 0.0, 0.0, 4.996e+10,], [ 0.0, 0.0, 0.0, 4.996e+10,],]
+material_boundary_points = [ [ 0.0, 0.5,], [ 0.5, 0.5,], [ 0.5, -0.5,], [ 0.0, -0.5,],]
+simulation_boundary_points = [ [ 0.6, -0.6,], [ -0.1, -0.6,], [ -0.1, 0.6,], [ 0.6, 0.6,], [ 0.6, -0.6,],]
+electronic_stopping_correction_factors = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
 energy_barrier_thickness = 2.2E-4
 
 [material_parameters]
 energy_unit = "EV"
 mass_unit = "AMU"
-Eb = [ 3.0,]
-Es = [ 4.84,]
-Ec = [ 3.5,]
-Z = [ 22,]
-m = [ 47.867,]
+Eb = [ 3.0, 2.58, 3.0, 0.0,]
+Es = [ 4.84, 2.58, 3.39, 4.72,]
+Ec = [ 3.5, 2.0, 3.0, 1.5,]
+Z = [ 22, 8, 13, 14,]
+m = [ 47.867, 15.9994, 26.98, 28.08553,]
 interaction_index = [0,]
 surface_binding_model = {"PLANAR"={calculation="TARGET"}}
 bulk_binding_model = "AVERAGE"
