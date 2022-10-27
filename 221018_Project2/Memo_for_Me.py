@@ -90,10 +90,10 @@ from rustbca import *
 
 def main():
     name = "Test_"
-
-    N = 100
-    do_trajectory_plot(name,0.4,0.2)
-    plot_energy_loss(name,N,50,0.4,0.2)
+    trajectory_analysis(name)
+    #N = 100
+    #do_trajectory_plot(name,0.4,0.2)
+    #plot_energy_loss(name,N,50,0.4,0.2)
 
 if __name__ == '__main__':
     main()

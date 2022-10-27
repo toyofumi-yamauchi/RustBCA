@@ -91,9 +91,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def main():
-    name = "221027_"
+    name = "221026_"
     do_trajectory_plot(name,0.4,0.2)
-
 
 if __name__ == '__main__':
     main()
