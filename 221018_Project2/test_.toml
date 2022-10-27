@@ -1,0 +1,52 @@
+[material_parameters]
+energy_unit = "EV"
+mass_unit = "AMU"
+Eb = [ 3.0,]
+Es = [ 5.19,]
+Ec = [ 0.1,]
+Z = [ 92,]
+m = [ 237.048166,]
+interaction_index = [ 0,]
+surface_binding_model = "AVERAGE"
+bulk_binding_model = "AVERAGE"
+
+[particle_parameters]
+length_unit = "ANGSTROM"
+energy_unit = "EV"
+mass_unit = "AMU"
+N = [ 10000,]
+m = [ 237.048166,]
+Z = [ 92,]
+E = [ 12.115276586285882,]
+Ec = [ 0.1,]
+Es = [ 5.19,]
+interaction_index = [ 0,]
+pos = [ [ -1000.0, 0.0, 0.0,],]
+dir = [ [ 0.9999999998476913, 1.7453292519057202e-5, 0.0,],]
+particle_input_filename = ""
+
+[geometry_input]
+length_unit = "ANGSTROM"
+densities = [ 0.05195,]
+electronic_stopping_correction_factor = 1.0
+radius = 1000.0
+
+[options]
+name = "test_"
+track_trajectories = false
+track_recoils = true
+track_recoil_trajectories = false
+write_buffer_size = 8000
+weak_collision_order = 3
+suppress_deep_recoils = false
+high_energy_free_flight_paths = false
+num_threads = 4
+num_chunks = 10
+use_hdf5 = false
+electronic_stopping_mode = "LOW_ENERGY_NONLOCAL"
+mean_free_path_model = "LIQUID"
+track_displacements = true
+track_energy_losses = true
+root_finder = [[{"NEWTON"={max_iterations=100, tolerance=1e-3}}]]
+interaction_potential = [["KR_C"]]
+scattering_integral =  [["MENDENHALL_WELLER"]]
