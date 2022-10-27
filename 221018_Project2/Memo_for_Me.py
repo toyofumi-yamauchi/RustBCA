@@ -7,7 +7,7 @@ pwd              = showing the full pathname to the current folder location
 ls               = showing the files in the current folder location
 ls -la           = showing the full details of the files in the current folder location
 mkdir FOLDERNAME = making the new folder as FILENAME in the current folder location
-cd FOLDERNAME    = moving to the FILENAME folder from the current folder location
+cd FOLDERNAME    = moving to the FOLDERNAME folder from the current folder location
 cp FILENAME .    = copying the FILENAME file to the current folder location
 rm FILENAME      = removing the FILENAME file from the current folder location
 rm FILANEME*     = removing the files containing FILENAME from the current folder location
@@ -92,10 +92,8 @@ def main():
     name = "Test_"
 
     N = 100
-    do_trajectory_plot(name,2.0,0.5)
-    #do_trajectory_plot(name)
-    #plot_energy_loss(name,N)
-    #plot_distributions_rustbca('2000.0eV_0.0001deg_He_TiO2_Al_Si')
+    do_trajectory_plot(name,0.4,0.2)
+    plot_energy_loss(name,N,50,0.4,0.2)
 
 if __name__ == '__main__':
     main()

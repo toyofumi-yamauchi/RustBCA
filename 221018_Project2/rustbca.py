@@ -68,6 +68,8 @@ def do_trajectory_plot(name, thickness=None, depth=None, boundary=None, plot_fin
 
     '''
 
+    plt.style.use('tableau-colorblind10')
+
     reflected = np.atleast_2d(np.genfromtxt(name+'reflected.output', delimiter=','))
     sputtered = np.atleast_2d(np.genfromtxt(name+'sputtered.output', delimiter=','))
     deposited = np.atleast_2d(np.genfromtxt(name+'deposited.output', delimiter=','))
@@ -84,7 +86,6 @@ def do_trajectory_plot(name, thickness=None, depth=None, boundary=None, plot_fin
     index = 0
     x_max = 0
 
-
     if np.size(trajectories) > 0:
         for trajectory_length in trajectory_data:
 
@@ -98,41 +99,48 @@ def do_trajectory_plot(name, thickness=None, depth=None, boundary=None, plot_fin
             if np.max(x) > x_max:
                 x_max = np.max(x)
 
-            if plot_origins: plt.scatter(x[0], y[0], color=colormap.to_rgba(Z), marker='.', s=5)
-            plt.plot(x, y, color = colormap.to_rgba(Z), linewidth = 1)
+            if plot_origins: 
+                #l0 = axis1.scatter(x[0], y[0], color=colormap.to_rgba(Z), marker='*', s=10)
+                l0 = axis1.scatter(x[0], y[0], color='r', marker='*', s=10)
+            axis1.plot(x, y, color = colormap.to_rgba(Z), linewidth = 1)
 
             index += trajectory_length
 
         if plot_final_positions:
             if np.size(sputtered) > 0:
                 sputtered_colors = [colormap.to_rgba(Z) for Z in sputtered[:,1]]
-                plt.scatter(sputtered[:,3], sputtered[:,4], s=50, color=sputtered_colors, marker='*')
+                l1 = axis1.scatter(sputtered[:,3], sputtered[:,4], s=5, color=sputtered_colors, marker='o')
 
             if np.size(reflected) > 0:
                 reflected_colors = [colormap.to_rgba(Z) for Z in reflected[:,1]]
-                plt.scatter(reflected[:,3], reflected[:,4], s=50, color=reflected_colors, marker='x')
+                l2 = axis1.scatter(reflected[:,3], reflected[:,4], s=5, color=reflected_colors, marker='x')
 
             if np.size(deposited) > 0:
                 deposited_colors = [colormap.to_rgba(Z) for Z in deposited[:,1]]
-                plt.scatter(deposited[:,2], deposited[:,3], s=50, color=deposited_colors, marker='^')
+                l3 = axis1.scatter(deposited[:,2], deposited[:,3], s=5, color=deposited_colors, marker='s')
 
         if thickness and depth:
             x_box = [0., 0., depth, depth, 0.]
             y_box = [-thickness/2., thickness/2., thickness/2., -thickness/2., -thickness/2.]
-            plt.plot(x_box, y_box, color='dimgray', linewidth=3)
+            axis1.plot(x_box, y_box, color='dimgray', linewidth=3)
 
         elif boundary:
             x = [x_ for (x_, y_) in boundary]
             y = [y_ for (x_, y_) in boundary]
             x.append(x[0])
             y.append(y[0])
-            plt.plot(x, y, linewidth=3, color="dimgray")
+            axis1.plot(x, y, linewidth=3, color="dimgray")
 
-        plt.xlabel('x [um]')
-        plt.ylabel('y [um]')
-        plt.title(name+' Trajectories')
-        plt.axis('square')
-        plt.savefig(name+'trajectories.png')
+        axis1.set_xlabel('x [um]')
+        axis1.set_xticks(np.linspace(-0.1,1.0,12))
+        axis1.set_ylabel('y [um]')
+        axis1.set_yticks(np.linspace(-0.6,0.6,13))
+        axis1.set_title(name+' Trajectories')
+        #lns = l0+l1+l2+l3
+        #labs = [l.get_label() for l in lns]
+        #axis1.legend(lns,labs,framealpha=1.0)
+        axis1.axis('square')
+        fig1.savefig(name+'trajectories.png',dpi=300)
         #if show: plt.show()
         #plt.close()
 
@@ -1059,7 +1067,7 @@ def sputtering(ions, target, energies, angle, N_=10000, run_sim=True):
     integral = '"GAUSS_LEGENDRE"'
     options = ['"KR_C"', '"MOLIERE"', '"ZBL"']
 
-    ftridyn = tridyn_interface(ions['symbol'], target['symbol'])
+    #ftridyn = tridyn_interface(ions['symbol'], target['symbol'])
 
     legends = []
     for option_index, option in enumerate(options):
@@ -1107,7 +1115,7 @@ def sputtering(ions, target, energies, angle, N_=10000, run_sim=True):
         legends.append(option+' Y')
         plt.loglog(energies, r, linestyle='--', marker='*')
         legends.append(option+' R')
-
+    '''
     for energy in energies:
         sputteredf, reflectedf, _ = ftridyn.run_tridyn_simulations_from_iead([energy], [angle], [[N_]], number_histories=N)
 
@@ -1120,6 +1128,7 @@ def sputtering(ions, target, energies, angle, N_=10000, run_sim=True):
             sf.append(np.shape(sputteredf)[0]/(N_*N))
         else:
             sf.append(0.0)
+    '''
 
     plt.loglog(energies, sf, linestyle='-.', marker='^')
     legends.append('F-TRIDYN Y')
@@ -1146,6 +1155,7 @@ def sputtering(ions, target, energies, angle, N_=10000, run_sim=True):
     plt.legend(legends)
     axis = plt.gca()
     axis.set_ylim(np.min(np.array(s)[np.array(s)>0]))
+    plt.savefig(name+' sputtering yield.png',dpi=300)
     plt.show()
 
 def different_depths():

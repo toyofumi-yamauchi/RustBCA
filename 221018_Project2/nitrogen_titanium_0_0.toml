@@ -1,0 +1,55 @@
+[material_parameters]
+energy_unit = "EV"
+mass_unit = "AMU"
+Eb = [ 3.0,]
+Es = [ 4.84,]
+Ec = [ 3.5,]
+Z = [ 22,]
+m = [ 47.867,]
+interaction_index = [ 0,]
+surface_binding_model = "AVERAGE"
+bulk_binding_model = "AVERAGE"
+
+[particle_parameters]
+length_unit = "MICRON"
+energy_unit = "EV"
+mass_unit = "AMU"
+N = [ 1000,]
+m = [ 14,]
+Z = [ 7,]
+E = [ 5.0,]
+Ec = [ 1.0,]
+Es = [ 0.0,]
+interaction_index = [ 0,]
+pos = [ [ -0.0001, 0.0, 0.0,],]
+dir = [ [ 0.8191520442889918, 0.573576436351046, 0.0,],]
+particle_input_filename = ""
+
+[geometry_input]
+length_unit = "MICRON"
+triangles = [ [ 0.0, 10, 0.0, 5.0, -5.0, -5.0,], [ 0.0, 10, 10, 5.0, 5.0, -5.0,],]
+densities = [ [ 56699999999.99999,], [ 56699999999.99999,],]
+material_boundary_points = [ [ 0.0, 5.0,], [ 10, 5.0,], [ 10, -5.0,], [ 0.0, -5.0,],]
+simulation_boundary_points = [ [ 10.005, -5.005,], [ -0.005, -5.005,], [ -0.005, 5.005,], [ 10.005, 5.005,], [ 10.005, -5.005,],]
+energy_barrier_thickness = 0.0002512360815299667
+electronic_stopping_correction_factors = [ 1.0, 1.0,]
+
+[options]
+name = "nitrogen_titanium_0_0"
+track_trajectories = false
+track_recoils = true
+track_recoil_trajectories = false
+write_buffer_size = 8000
+weak_collision_order = 3
+suppress_deep_recoils = false
+high_energy_free_flight_paths = false
+num_threads = 4
+num_chunks = 10
+use_hdf5 = false
+electronic_stopping_mode = "LOW_ENERGY_EQUIPARTITION"
+mean_free_path_model = "LIQUID"
+track_displacements = false
+track_energy_losses = false
+root_finder = [[DEFAULTNEWTON]]
+interaction_potential = [["KR_C"]]
+scattering_integral =  [["GAUSS_LEGENDRE"]]
