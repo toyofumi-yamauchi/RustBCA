@@ -69,6 +69,23 @@ def empty_file_check(name,filetype):
         check = True
     return check
 
+def angle_histogram(name,particle,target,energy,angle):
+    '''
+    Make a pie chart showing the fraction of sputtered, reflected, and reposited particles
+
+    Args:
+        name (string): name of rustbca simulation
+        particle (string): name of incident particle
+        target (string): name of target material
+        energy (string): energy of incident particle [eV]
+        angle (string): angle of incident particle [degree]
+    '''
+
+    plt.style.use('tableau-colorblind10')
+
+
+    return
+
 def pie_chart_maker(name,particle,target,energy,angle):
     '''
     Make a pie chart showing the fraction of sputtered, reflected, and reposited particles
@@ -122,27 +139,27 @@ def trajectory_plot_maker(name,particle,target,energy,angle):
     
     plt.style.use('tableau-colorblind10')
 
-    fig1, ax1 = plt.subplots()
+    plt.figure()
 
     trajectories = np.atleast_2d(np.genfromtxt(name+'trajectories.output', delimiter=','))
     trajectory_data = np.atleast_1d(np.genfromtxt(name+'trajectory_data.output', delimiter=',').transpose().astype(int))
     hitting_index=trajectory_data[0]
 
-    ax1.plot(trajectories[0,3],trajectories[0,4],'rx',label='Starting Point')
-    ax1.plot(trajectories[hitting_index,3],trajectories[hitting_index,4],'bx',label='Hitting Point')
+    plt.plot(trajectories[0,3],trajectories[0,4],'rx',label='Starting Point')
+    plt.plot(trajectories[hitting_index,3],trajectories[hitting_index,4],'bx',label='Hitting Point')
 
     x_max, x_min, y_max, y_min = 0.0, 0.0, 0.0, 0.0
     if empty_file_check(name,'sputtered.output'):
         sputtered = np.atleast_2d(np.genfromtxt(name+'sputtered.output', delimiter=','))
-        ax1.plot(sputtered[:,3],sputtered[:,4],'.',label='sputtered')
+        plt.plot(sputtered[:,3],sputtered[:,4],'.',label='sputtered')
         x_max, x_min, y_max, y_min = max_min_finder(sputtered[:,3],sputtered[:,4], x_max, x_min, y_max, y_min)
     if empty_file_check(name,'reflected.output'):
         reflected = np.atleast_2d(np.genfromtxt(name+'reflected.output', delimiter=','))
-        ax1.plot(reflected[:,3],reflected[:,4],'.',label='reflected')
+        plt.plot(reflected[:,3],reflected[:,4],'.',label='reflected')
         x_max, x_min, y_max, y_min = max_min_finder(reflected[:,3],reflected[:,4], x_max, x_min, y_max, y_min)
     if empty_file_check(name,'deposited.output'):
         deposited = np.atleast_2d(np.genfromtxt(name+'deposited.output', delimiter=','))
-        ax1.plot(deposited[:,3],deposited[:,4],'.',label='deposited')
+        plt.plot(deposited[:,3],deposited[:,4],'.',label='deposited')
         x_max, x_min, y_max, y_min = max_min_finder(deposited[:,3],deposited[:,4], x_max, x_min, y_max, y_min)
 
     index = 0    
@@ -155,17 +172,19 @@ def trajectory_plot_maker(name,particle,target,energy,angle):
         z = trajectories[index:(trajectory_length+index),5] # z position [μm]
 
         x_max, x_min, y_max, y_min = max_min_finder(x,y, x_max, x_min, y_max, y_min)
-        ax1.plot(x,y,'k-',linewidth=0.5)
+        plt.plot(x,y,'k-',linewidth=0.5)
         index += trajectory_length
 
-    ax1.axvspan(0,x_max*2,color='k',alpha=0.2,label='material')
-    ax1.set_xlabel('x [μm]')
-    #ax1.set_xlim(x_min*2,x_max*2)
-    ax1.set_ylabel('y [μm]')
-    ax1.set_ylim((-0.4,0.4))
-    ax1.axis('square')
-    ax1.legend()
+    plt.axvspan(0,0.4,color='g',alpha=0.5,label='material')
+    plt.xlabel('x [μm]')
+    plt.ylabel('y [μm]')
+    plt.xlim((-0.1,0.7))
+    plt.ylim((-0.4,0.4))
+    
+    #plt.axis('square')
+    plt.legend(framealpha=1.0)
     plt.title(energy+' eV '+particle+' → '+target+' with '+angle+'$\degree$')
+    plt.tight_layout()
     plt.savefig('Trajectory_'+name+'.png',dpi=300)
     #plt.show()
 

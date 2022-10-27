@@ -11,7 +11,7 @@ def main():
     angle = np.array(('0','15','30'))
     name = np.array(('1_','2_','3_'))
     for i in range(0,len(angle)):
-        #pie_chart_maker(name[i],particle,target,energy,angle[i])
+        pie_chart_maker(name[i],particle,target,energy,angle[i])
         trajectory_plot_maker(name[i],particle,target,energy,angle[i])
 
 if __name__ == '__main__':
