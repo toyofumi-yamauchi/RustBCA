@@ -82,13 +82,11 @@ When your generated output file is > 100 MB
     E.g., java -jar ./bfg-1.14.0.jar --delete-files 2000.0eV_0.0001deg_He_TiO2_Al_Sitrajectories.output
           java -jar ./bfg-1.14.0.jar --delete-files 2000.0eV_0.0001deg_He_TiO2_Al_Sienergy_loss.output
 6.  In terminal, 'git push --force'
-14
+
 '''
 from materials import *
 from formulas import *
 from rustbca import *
-import matplotlib.pyplot as plt
-import numpy as np
 
 def main():
     name = "221026_"
