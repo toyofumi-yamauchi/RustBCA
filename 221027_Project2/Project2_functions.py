@@ -69,12 +69,16 @@ def empty_file_check(name,filetype):
         check = True
     return check
 
-def pie_chart_maker(name):
+def pie_chart_maker(name,particle,target,energy,angle):
     '''
     Make a pie chart showing the fraction of sputtered, reflected, and reposited particles
 
     Args:
         name (string): name of rustbca simulation
+        particle (string): name of incident particle
+        target (string): name of target material
+        energy (string): energy of incident particle [eV]
+        angle (string): angle of incident particle [degree]
     '''
 
     plt.style.use('tableau-colorblind10')
@@ -98,17 +102,22 @@ def pie_chart_maker(name):
                   labels=['Sputtered = {:.0f}'.format(N_spu),'Reflected = {:.0f}'.format(N_ref),'Deposited = {:.0f}'.format(N_dep)],
                   startangle=90,autopct="%1.1f%%",
                   labeldistance=0.3,textprops={'color': "white", 'weight': "bold"})
-    plt.title('aaa')
-    plt.show()
+    plt.title(energy+' eV '+particle+' → '+target+' with '+angle+'$\degree$')
+    plt.savefig('Pie_'+name+'.png',dpi=300)
+    #plt.show()
 
     return
 
-def trajectory_plot_maker(name):
+def trajectory_plot_maker(name,particle,target,energy,angle):
     '''
     Plot the sputtered/reflected particle's angle with respect to the surface from [name]trajectories.output.
     
     Args:
         name (string): name of rustbca simulation
+        particle (string): name of incident particle
+        target (string): name of target material
+        energy (string): energy of incident particle [eV]
+        angle (string): angle of incident particle [degree]
     '''
     
     plt.style.use('tableau-colorblind10')
@@ -123,7 +132,6 @@ def trajectory_plot_maker(name):
     ax1.plot(trajectories[hitting_index,3],trajectories[hitting_index,4],'bx',label='Hitting Point')
 
     x_max, x_min, y_max, y_min = 0.0, 0.0, 0.0, 0.0
-    N_tot, N_ref, N_spu, N_dep = 0, 0, 0, 0
     if empty_file_check(name,'sputtered.output'):
         sputtered = np.atleast_2d(np.genfromtxt(name+'sputtered.output', delimiter=','))
         ax1.plot(sputtered[:,3],sputtered[:,4],'.',label='sputtered')
@@ -152,11 +160,13 @@ def trajectory_plot_maker(name):
 
     ax1.axvspan(0,x_max*2,color='k',alpha=0.2,label='material')
     ax1.set_xlabel('x [μm]')
-    ax1.set_xlim(x_min*2,x_max*2)
+    #ax1.set_xlim(x_min*2,x_max*2)
     ax1.set_ylabel('y [μm]')
-    ax1.set_ylim(y_min*1.5,y_max*1.5)
+    ax1.set_ylim((-0.4,0.4))
     ax1.axis('square')
     ax1.legend()
-    plt.show()
+    plt.title(energy+' eV '+particle+' → '+target+' with '+angle+'$\degree$')
+    plt.savefig('Trajectory_'+name+'.png',dpi=300)
+    #plt.show()
 
     return
